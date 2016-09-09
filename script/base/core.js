@@ -1,33 +1,17 @@
-var app = angular.module("wsscat", ['ui.router']);
+var app = angular.module("wsscat", ['ionic']);
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-	$urlRouterProvider.when('', '/index');
+	$urlRouterProvider.when('', '/index/blog');
 	$stateProvider.state('index', {
 		url: '/index',
 		templateUrl: 'html/index.html',
 		controller: 'indexCtrl'
 	}).state('index.blog', {
 		url: '/blog',
-		views: {
-			"first": {
-				templateUrl: 'html/blog.html',
-				controller: 'blogCtrl'
-			}
-		}
-	}).state('index.b', {
-		url: '/pageMain2/:id',
-		views: {
-			"first": {
-				templateUrl: 'views/pageMain2.html',
-				controller: 'pageMain2Ctrl'
-			}
-		}
-	}).state('main.c', {
-		url: '/pageMain3/:id',
-		views: {
-			"second": {
-				templateUrl: 'views/pageMain3.html',
-				//controller: 'pageMain3Ctrl'
-			}
-		}
+		templateUrl: 'html/blog.html',
+		controller: 'blogCtrl'
+	}).state('index.blogDetail', {
+		url: '/blogDetail/:id',
+		templateUrl: 'html/blogDetail.html',
+		controller: 'blogDetailCtrl'
 	})
 }]);

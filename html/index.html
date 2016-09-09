@@ -1,26 +1,23 @@
 <ion-side-menus>
-	<!-- 中间内容 -->
 	<ion-side-menu-content>
-		<ion-header-bar align-title="left" class="bar-positive">
-			<div class="buttons">
-				<button class="button" ng-click="doSomething()">Left Button</button>
-			</div>
-			<h1 class="title">Title!</h1>
-			<div class="buttons">
-				<button class="button">Right Button</button>
-			</div>
-		</ion-header-bar>
-		<p>{{name}}</p>
 		<div ui-view=""></div>
 	</ion-side-menu-content>
-
-	<!-- 左侧菜单 -->
 	<ion-side-menu side="left">
-		1
-	</ion-side-menu>
-
-	<!-- 右侧菜单 -->
-	<ion-side-menu side="right">
-		2
+		<!--<ion-header-bar>
+			<h1 class="title">Wsscat</h1>
+		</ion-header-bar>-->
+		<!--<ion-content>-->
+			<ion-list>
+				<ion-item menu-close href="#/index/blog">
+					博客
+				</ion-item>
+				<ion-item menu-close href="#/modal">
+					modal
+				</ion-item>
+				<ion-item>
+					你好
+				</ion-item>
+			</ion-list>
+		<!--</ion-content>-->
 	</ion-side-menu>
 </ion-side-menus>

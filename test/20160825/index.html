@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
 		<title></title>
 		<script type="text/javascript" src="js/ionic.bundle.js"></script>
-		<script type="text/javascript" src="js/angular-ui-router.js"></script>
+		<!--<script type="text/javascript" src="js/angular-ui-router.js"></script>-->
 		<link rel="stylesheet" href="css/ionic.css" />
 	</head>
 
@@ -44,7 +44,7 @@
 		</ion-side-menus>
 	</body>
 	<script>
-		var app = angular.module('wsscat', ['ionic', 'ui.router']);
+		var app = angular.module('wsscat', ['ionic']);
 		app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 			//default
 			$urlRouterProvider.when('', '/index');
