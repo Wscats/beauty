@@ -1,0 +1,37 @@
+<!--<div class="bar bar-header bar-stable">
+			<a class="button button-outline icon-right ion-navicon button-balanced">Reorder</a>
+			<h1 class="title">bar-stable</h1>
+			<a class="button button-icon icon ion-settings"></a>
+		</div>-->
+<ion-header-bar>
+	<a class="button icon-left ion-chevron-left button-clear button-dark">Back</a>
+	<h1 class="title">bar-stable</h1>
+	<a class="button button-icon icon ion-settings" ng-click="setting()"></a>
+</ion-header-bar>
+<ion-content>
+	<!--<ion-infinite-scroll on-infinite="loadMore()">-->
+	<ion-refresher pulling-text="我想你" refreshing-text="我恨你" on-refresh="loadMore()"></ion-refresher>
+	<ion-list show-delete="isShowDelete" can-swipe="true" class="list">
+		<ion-item class="item item-avatar" href="#" ng-repeat="item in items">
+			<img ng-src="{{item.picUrl?item.picUrl:'images/juhua.png'}}">
+			<h2>{{item.author}}</h2>
+			<p>{{item.content}}</p>
+			<!--删除样式的button-->
+			<ion-delete-button class="ion-minus-circled" ng-click="items.splice($index, 1)">
+			</ion-delete-button>
+			<ion-option-button class="button-positive" ng-click="share(item)">
+				分享
+			</ion-option-button>
+			<ion-option-button class="button-info" ng-click="edit(item)">
+				编辑
+			</ion-option-button>
+		</ion-item>
+	</ion-list>
+	<!--</ion-infinite-scroll>-->
+</ion-content>
+<ion-footer-bar>
+	<div class="title">Footer</div>
+</ion-footer-bar>
+<!--<div class="bar bar-footer bar-balanced">
+			<div class="title">Footer</div>
+		</div>-->

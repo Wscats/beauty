@@ -1,0 +1,16 @@
+<ion-header-bar align-title="left" class="bar-positive">
+  <div class="buttons">
+    <button class="button" ng-click="doSomething()">Left Button</button>
+  </div>
+  <h1 class="title">Title!</h1>
+  <div class="buttons">
+    <button class="button" ng-click="show()">Right Button</button>
+  </div>
+</ion-header-bar>
+<ion-content>
+	<ul>
+		<li ng-repeat="contact in contacts">
+			{{contact.name}}
+		</li>
+	</ul>
+</ion-content>

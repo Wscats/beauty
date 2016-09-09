@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html ng-app="wsscat">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no">
+		<title></title>
+		<script type="text/javascript" src="js/ionic.bundle.js"></script>
+		<script type="text/javascript" src="js/angular-ui-router.js"></script>
+		<link rel="stylesheet" href="css/ionic.css" />
+	</head>
+
+	<body>
+		<!--<div ui-view=""></div>-->
+		<!--侧边栏-->
+		<ion-side-menus>
+			<!--内容区域，一般是放ui-view-->
+			<ion-side-menu-content>
+				<div ui-view=""></div>
+			</ion-side-menu-content>
+			<!--滑动时候左边出现的区域-->
+			<ion-side-menu side="left">
+				<ion-header-bar>
+					<h1 class="title">bar-stable</h1>
+				</ion-header-bar>
+				<ion-content>
+					<ion-list>
+						<ion-item menu-close href="#/index">
+							首页
+						</ion-item>
+						<ion-item menu-close href="#/modal">
+							modal
+						</ion-item>
+						<ion-item>
+							你好
+						</ion-item>
+					</ion-list>
+				</ion-content>
+			</ion-side-menu>
+			<!--滑动时候右边出现的区域-->
+			<!--<ion-side-menu side="right">
+				3
+			</ion-side-menu>-->
+		</ion-side-menus>
+	</body>
+	<script>
+		var app = angular.module('wsscat', ['ionic', 'ui.router']);
+		app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+			//default
+			$urlRouterProvider.when('', '/index');
+			$stateProvider.state('index', {
+				url: '/index',
+				templateUrl: 'views/index.html',
+				controller: 'indexCtrl'
+			}).state('card', {
+				url: '/card',
+				templateUrl: 'views/card.html',
+				controller: 'cardCtrl'
+			}).state('login', {
+				url: '/login',
+				templateUrl: 'views/login.html',
+				controller: 'loginCtrl'
+			}).state('modal', {
+				url: '/modal',
+				templateUrl: 'views/modal.html',
+				controller: 'modalCtrl'
+			}).state('menu', {
+				url: '/menu',
+				templateUrl: 'views/menu.html',
+				controller: 'menuCtrl'
+			})
+		}])
+		app.controller('indexCtrl', function($scope, $http, $ionicLoading) {
+			console.log($ionicLoading);
+			//$rootScope.isShowJuhua = true; ng-show="isShowJuhua"
+			$ionicLoading.show({
+				//template: '<p>你的菊花</p><b>好~</b>'
+				templateUrl: 'views/loading.html',
+				noBackdrop: true,
+				//delay:1000,
+				//duration:3000
+			});
+			$scope.items = [];
+			$scope.page = 1;
+			$scope.loadMore = function() {
+					$http.jsonp('joke.php', {
+						params: {
+							page: $scope.page,
+							callback: 'JSON_CALLBACK'
+						}
+					}).success(function(data) {
+						$ionicLoading.hide();
+						//$scope.items = data.detail;
+						$scope.items = $scope.items.concat(data.detail)
+						console.log(data);
+					}).finally(function() {
+						//$scope.$broadcast('scroll.infiniteScrollComplete');
+						$scope.$broadcast('scroll.refreshComplete');
+					})
+					$scope.page++
+				}
+				/*$scope.$on('stateChangeSuccess', function() {
+					$scope.loadMore();
+				});*/
+			$scope.setting = function() {
+				$scope.isShowDelete = !$scope.isShowDelete;
+			}
+			$scope.loadMore();
+			$scope.edit = function(item) {
+				alert('Edit Item: ' + item.id);
+			};
+			$scope.share = function(item) {
+				alert('Share Item: ' + item.id);
+			};
+		})
+		app.controller('cardCtrl', function($scope) {
+
+		})
+		app.controller('loginCtrl', function($scope) {
+
+		})
+		app.controller('modalCtrl', function($scope, $ionicModal) {
+			$scope.name = 'wsscat';
+			$scope.contacts = [{
+				name: 'Gordon Freeman'
+			}, {
+				name: 'Barney Calhoun'
+			}, {
+				name: 'Lamarr the Headcrab'
+			}, ];
+
+			//拿一个模板文件过来，在此控制器的视图下显示
+			$ionicModal.fromTemplateUrl('views/test.html', {
+				scope: $scope,
+			}).then(function(modal) {
+				console.log(modal)
+				$scope.modal = modal;
+			});
+
+			$scope.show = function() {
+				$scope.modal.show();
+			}
+
+			$scope.hide = function() {
+				$scope.modal.hide();
+			}
+
+			$scope.createContact = function(a, b, c) {
+				/*console.log(a+"  "+b+"   "+c);
+				var name = a+b+c;
+				var obj = {
+					name:name
+				};*/
+				$scope.contacts.push({
+					name: a + b + c
+				})
+				$scope.modal.hide();
+			}
+		})
+		app.controller('menuCtrl', function($scope) {
+
+		})
+	</script>
+
+</html>
