@@ -13,5 +13,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		url: '/blogDetail/:id',
 		templateUrl: 'html/blogDetail.html',
 		controller: 'blogDetailCtrl'
+	}).state('index.news', {
+		url: '/news',
+		templateUrl: 'html/news.html',
+		controller: 'newsCtrl'
 	})
 }]);
