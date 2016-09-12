@@ -17,5 +17,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		url: '/news',
 		templateUrl: 'html/news.html',
 		controller: 'newsCtrl'
+	}).state('index.news.channels', {
+		url: '/channels/:id',
+		templateUrl: 'html/channels.html',
+		controller: 'channelsCtrl'
 	})
 }]);

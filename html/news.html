@@ -1,0 +1,12 @@
+<ion-header-bar class="bar bar-header bar-dark">
+	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	<h1 class="title">Wsscat</h1>
+</ion-header-bar>
+<ion-scroll direction="x" scrollbar-x="false" zooming="true" style="position: fixed; border-bottom: 1px solid #ddd; width: 90%; top:44px; height: 44px; line-height: 44px; margin: 0 5%;">
+	<div style="height: 44px; width: 3200px;">
+		<a ng-href="#/index/news/channels/{{channel.channelId}}" ng-repeat="channel in channels" style="padding: 0 5px; color: #000000; text-decoration: none;">
+			{{channel.name}}
+		</a>
+	</div>
+</ion-scroll>
+<ion-nav-view></ion-nav-view>
